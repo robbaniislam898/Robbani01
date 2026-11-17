@@ -1,35 +1,61 @@
-
 name: Build Imo AI Auto Reply APK
 
 on:
   workflow_dispatch:
   push:
-    branches: [ main, master ]
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      - uses: actions/setup-java@v4
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Step 2: Setup Java
+      - name: Setup Java
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
 
-      - uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.9'
+      # Step 3: Setup Gradle
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
 
-      - uses: android-actions/setup-android@v3
+      # Step 4: Setup Android SDK
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
 
+      # Step 5: Install Android SDK Packages
       - name: Install Android SDK
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+        run: |
+          sdkmanager "platforms;android-35"
+          sdkmanager "build-tools;35.0.0"
 
+      # Step 6: Check Gradle Wrapper
+      - name: Check Gradle Wrapper
+        run: |
+          chmod +x ./gradlew
+          ./gradlew --version
+
+      # Step 7: Build APK
       - name: Build APK
-        run: gradle assembleDebug
+        run: |
+          ./gradlew --no-daemon assembleDebug
 
-      - uses: actions/upload-artifact@v4
+      # Step 8: Upload APK
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
         with:
-          name: ImoAIAutoReply-debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: ImoAI-AutoReply-debug-APK
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+          retention-days: 7
