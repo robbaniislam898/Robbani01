@@ -1,0 +1,53 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#F4F6FB">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="22dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Imo AI Auto Reply" android:textSize="26sp" android:textStyle="bold"
+            android:textColor="#17213A"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="AI দিয়ে ইনকামিং মেসেজের উত্তর তৈরি করুন" android:textSize="14sp"
+            android:layout_marginTop="6dp" android:textColor="#58627A"/>
+        <Switch android:id="@+id/enabledSwitch" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Auto Reply চালু করুন"
+            android:textSize="17sp" android:layout_marginTop="24dp"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="AI সার্ভারের HTTPS URL" android:textStyle="bold"
+            android:layout_marginTop="20dp"/>
+        <EditText android:id="@+id/serverUrl" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="https://your-server.example/reply"
+            android:inputType="textUri"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Imo package filter (প্রয়োজনে পরিবর্তন করুন)" android:textStyle="bold"
+            android:layout_marginTop="14dp"/>
+        <EditText android:id="@+id/packageFilter" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="imo"
+            android:inputType="text"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="AI-এর আচরণ / নির্দেশনা" android:textStyle="bold"
+            android:layout_marginTop="14dp"/>
+        <EditText android:id="@+id/instructions" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:minLines="3" android:gravity="top"
+            android:inputType="textMultiLine"
+            android:text="বাংলায় ভদ্র, সংক্ষিপ্ত ও স্বাভাবিক উত্তর দেবে। প্রয়োজন হলে বলবে পরে বিস্তারিত উত্তর দেব।"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="ব্যাকআপ উত্তর" android:textStyle="bold" android:layout_marginTop="14dp"/>
+        <EditText android:id="@+id/fallbackReply" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:minLines="2" android:gravity="top"
+            android:inputType="textMultiLine"
+            android:text="আসসালামু আলাইকুম, আপনার মেসেজ পেয়েছি। একটু পরে রিপ্লাই দিচ্ছি।"/>
+        <Button android:id="@+id/saveButton" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="সেটিংস সেভ করুন"
+            android:layout_marginTop="18dp"/>
+        <Button android:id="@+id/permissionButton" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Notification Access চালু করুন"
+            android:layout_marginTop="8dp"/>
+        <TextView android:id="@+id/statusText" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="প্রথমে সার্ভার সেট করুন এবং Notification Access দিন।"
+            android:layout_marginTop="16dp" android:textColor="#58627A"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="গুরুত্বপূর্ণ: Android notification-এ Reply action থাকলেই স্বয়ংক্রিয় উত্তর পাঠানো সম্ভব। Imo-এর সব সংস্করণে এটি নাও থাকতে পারে।"
+            android:textColor="#A13B28" android:layout_marginTop="18dp"/>
+    </LinearLayout>
+</ScrollView>
